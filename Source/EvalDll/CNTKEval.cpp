@@ -40,10 +40,9 @@ void CNTKEvalBase<ElemType>::Init(const std::string& config)
     m_config.Parse(config);
     size_t nThreads = m_config("numCPUThreads", "1");
     CPUMatrix<ElemType>::SetNumThreads(nThreads);
-    if (m_config(L"shareNodeValueMatrices", false))
-        Globals::EnableShareNodeValueMatrices();
-    if (m_config(L"hyperCompressMemory", false))
-        Globals::EnableHyperCompressMemory();
+
+    Globals::SetShareNodeValueMatrices(m_config(L"shareNodeValueMatrices", true));
+    Globals::SetHyperCompressMemory(m_config(L"hyperCompressMemory", false));
 }
 
 

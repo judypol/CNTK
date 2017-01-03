@@ -581,12 +581,9 @@ int wmainWithBS(int argc, wchar_t* argv[]) // called from wmain which is a wrapp
         mpi = MPIWrapper::GetInstance(true /*create*/);
     }  
 
-    if (config(L"shareNodeValueMatrices", false))
-        Globals::EnableShareNodeValueMatrices();
-    if (config(L"hyperCompressMemory", false))
-        Globals::EnableHyperCompressMemory();
-    if (config(L"optimizeGradientAccumulation", true))
-        Globals::EnableGradientAccumulationOptimization();
+    Globals::SetShareNodeValueMatrices(config(L"shareNodeValueMatrices", true));
+    Globals::SetGradientAccumulationOptimization(config(L"optimizeGradientAccumulation", true));
+    Globals::SetHyperCompressMemory(config(L"hyperCompressMemory", false));
 
     TracingGPUMemoryAllocator::SetTraceLevel(config(L"traceGPUMemoryAllocations", 0));
 
@@ -728,12 +725,9 @@ int wmainOldCNTKConfig(int argc, wchar_t* argv[])
        mpi = MPIWrapper::GetInstance(true /*create*/);
     } 
 
-    if (config(L"shareNodeValueMatrices", false))
-        Globals::EnableShareNodeValueMatrices();
-    if (config(L"hyperCompressMemory", false))
-        Globals::EnableHyperCompressMemory();
-    if (config(L"optimizeGradientAccumulation", true))
-        Globals::EnableGradientAccumulationOptimization();
+    Globals::SetShareNodeValueMatrices(config(L"shareNodeValueMatrices", true));
+    Globals::SetGradientAccumulationOptimization(config(L"optimizeGradientAccumulation", true));
+    Globals::SetHyperCompressMemory(config(L"hyperCompressMemory", false));
 
     TracingGPUMemoryAllocator::SetTraceLevel(config(L"traceGPUMemoryAllocations", 0));
 
